@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"></meta>
+	<script type ="text/javascript" src ="./js/jquery-3.0.0.min.js"></script>
+	<script type ="text/javascript" src ="./js/cookie_util.js"></script>
+<title>注册界面</title>
+</head>
+<body>
+	<div id="regists">
+	<h1>用户注册</h1>
+       <label>用户&nbsp;&nbsp;&nbsp;名:</label>
+       <input type ="text" id ="username"/>
+       <span></span>
+       <br/>
+       <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+       <input type ="text" id ="password"/>
+       <span></span>
+       <br/>
+       <label>确认密码:</label>
+       <input type ="text" id ="confirm"/>
+       <span></span>
+       <br/>
+       <label>用户类型:</label>
+       <select id="usertype">
+		  <option value ="学生" selected="selected">学生</option>
+		  <option value ="管理员">管理员</option>
+      </select>
+      <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="button" id ="regist" value="注册"/>
+      <input type="button" id ="back" value="返回"/>
+      <br/> 
+	</div>
+</body>
+<script type="text/javascript">
+$(function(){
+	
+	$('#confirm').blur(checkconfirm);
+	$('#regist').click(registAction);
+	$('#back').click(backAction);
+});
+
+function checkconfirm(){
+	$('#confirm').next().empty();
+	var confirm = $('#confirm').val();
+	var password = $('#password').val();
+	if(!confirm || confirm.trim().length==0){
+		$('#confirm').next().html("确认密码不得为空！");
+		return;
+	}
+	if(confirm!=password){
+		$('#confirm').next().html("两次密码不一致！");
+		return;
+	}
+	return true;
+}
+
+function registAction(){
+	var username = $('#username').val();
+	var password = $('#password').val();
+	var usertype = $('#usertype').val();
+	var n = checkconfirm();
+	if(n!=1){
+        return;
+    }
+	var data = {"username":username,"password":password,"usertype":usertype};
+	var url = "./regist";
+	$.post(url, data, function(result){
+        console.log(result);
+        if(result.state==1){
+            //退回登录界面
+            
+            //var name = result.data.name;
+            //$('#count').val(name);
+            //$('#password').focus();
+            //清空表单
+            $('#username').val('');
+            $('#password').val('');
+            $('#confirm').val('');
+            console.log(result.data);
+            alert("用户注册成功！");
+            $('#back').click();
+        }else if(result.state==4){
+            $('#username').next().html(result.message);
+        }else if(result.state==3){
+            $('#password').next().html(result.message);
+        }else{
+            alert(result.message);
+        }
+    });	
+}
+
+function backAction(){
+	location.href='./index';
+}
+</script>
+</html>

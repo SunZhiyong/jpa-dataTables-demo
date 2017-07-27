@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>BONC欢迎您</title>
+    <script type ="text/javascript" src ="./js/jquery-3.0.0.min.js"></script>
+    <script type ="text/javascript" src ="./js/cookie_util.js"></script>
+    <script type = "text/javascript">
+    $(document).ready(function(){
+    });
+    </script>
+</head>
+<body>
+    <div id="login-list">
+       <h1>用户登陆</h1>
+	   <label>用户名:</label>
+	   <input type ="text" id ="username"/>
+	   <span></span>
+	   <br/>
+	   <label>密&nbsp;&nbsp;&nbsp;码:</label>
+	   <input type="text" id ="password"/>
+	   <span></span>
+	   <br/>
+	   <input type="button" id ="login" value="登陆"/>
+	   <input type="button" id ="regist" value="注册"/>
+	   <div id="div"></div>
+	   <span></span>
+   </div>
+</body>
+<script type = "text/javascript">
+$(function(){
+	$('#login').click(loginAction);
+	$('#regist').click(registAction);
+});
+
+function loginAction(){
+	 $('#username').next().empty();
+	 $('#password').next().empty();
+	var username = $('#username').val();
+	var password  = $('#password').val();
+	console.log(username);
+	console.log(password);
+	var url = './user';
+    var data = {username:username, 
+            password:password};
+    
+    $.post(url, data, function(result){
+    	
+    	if(result.state == 1){
+    		var user = result.data;
+    	addCookie("userId", user.userId);
+    	addCookie("userName", user.userName);
+    	location.href='./login';
+    	}
+    	else {
+    		var msg = result.message;
+    		if(result.state == 2){
+    			console.log(msg);
+    		   $('#username').next().html(msg);
+    		   }else if(result.state ==3){
+    			   $('#password').next().html(msg);
+    		   }else{
+    			   alert(msg);
+    		   }
+    	}
+    });
+}
+
+function registAction(){
+	location.href='./href';
+}
+</script>
+</html>

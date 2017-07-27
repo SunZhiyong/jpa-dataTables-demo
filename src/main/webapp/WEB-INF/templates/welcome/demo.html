@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"></meta>
+    <script type ="text/javascript" src ="./js/jquery-3.0.0.min.js"></script>
+    <script type ="text/javascript" src ="./js/cookie_util.js"></script>
+    <script type ="text/javascript" src ="./js/login.js"></script>
+    <script type = "text/javascript">
+    $(document).ready(function(){
+    	var userName = getCookie("userName");
+    	console.log(userName);
+    	$('#user').append(userName);
+    	var date = new Date();
+    	var todayDate = date.toLocaleString( );    
+    	$('#date').append(todayDate);
+    	$('#current').hide();
+    	$('#firstpage').hide();
+    	$('#prepage').hide();
+    	$('#nextpage').hide();
+    	$('#lastpage').hide();
+    });
+    </script>
+    <title>欢迎您，登陆本网站！</title>
+</head>
+<body>
+	<div id="userDiv"><span id="user">欢迎用户:</span>
+	<span>登陆！</span>
+	<p id="date"></p>
+	</div>
+	<label>每页条数</label>
+	<select id="pagesize">
+          <option value ="1">1</option>
+          <option value ="2">2</option>
+          <option value ="3">3</option>
+          <option value ="4">4</option>
+          <option value ="5" selected="selected">5</option>
+          <option value ="6">6</option>
+          <option value ="7">7</option>
+          <option value ="8">8</option>
+          <option value ="9">9</option>
+          <option value ="10">10</option>
+      </select>
+	<button id="query">查询</button>
+	
+	<div id="stuInfo">
+	<table id="student" border="1">
+	</table>
+	</div>
+	<div id="current">
+	<label>第</label>
+	<span id="currentpage"></span>
+	<label>页</label>
+	&nbsp;&nbsp;&nbsp;
+	<label>共</label>
+	<span id="totalitems"></span>
+    <label>条记录</label>
+    &nbsp;&nbsp;&nbsp;
+    <label>共</label>
+    <span id="totalpages"></span>
+    <label>页</label>
+	</div>
+	<button id="firstpage">首页</button>
+	<button id="prepage">上一页</button>
+	<button id="nextpage">下一页</button>
+	<button id="lastpage">尾页</button>
+</body>
+</html>

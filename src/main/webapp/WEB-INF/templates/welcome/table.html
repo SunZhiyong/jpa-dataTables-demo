@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"></meta>
+	<script type="text/javascript" charset="utf8" src="./js/jquery-3.0.0.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="./js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="./js/echarts.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="./js/echart.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/jquery.dataTables.min.css"></link>
+	<title>Insert title here</title>
+</head>
+<body> 
+    <div align="center">
+    <span>专业:</span> <input type="text" placeholder="专业" id="major-search"></input>
+    <button id="search">查询</button>
+    <button id="table_id_example_button">获取选中的行</button>
+    </div>
+    <div id="main" style="width: 600px;height:300px;margin-left:25%" ></div>
+    <table id="table_id_example" class="display">
+	    <thead id = "title">
+	       <tr>
+	           <td>StuId</td>
+	           <td>StuName</td>
+	           <td>StuSex</td>
+	           <td>Birthday</td>
+	           <td>Department</td>
+	           <td>Address</td>
+	       </tr>
+	    </thead>
+	    <tfoot>
+	       <tr>
+               <td>StuId</td>
+               <td>StuName</td>
+               <td>StuSex</td>
+               <td>Birthday</td>
+               <td>Department</td>
+               <td>Address</td>
+           </tr>
+       </tfoot>
+    </table>
+</body>
+<script type="text/javascript"> 
+</script>
+</html>

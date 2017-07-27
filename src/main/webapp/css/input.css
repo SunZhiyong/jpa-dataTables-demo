@@ -1,0 +1,17 @@
+    input[type="text"]
+    {
+      width:150px;
+      display:block;
+      margin-bottom:10px;
+      background-color:yellow;
+      font-family: Verdana, Arial;
+    }
+
+    input[type="button"]
+    {
+      width:80px;
+      margin-left:35px;
+      display:block;
+      font-family: Verdana, Arial;
+    }
+    
